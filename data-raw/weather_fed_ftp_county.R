@@ -18,12 +18,13 @@ library(RCurl)
 # for (file in filenames){
 #   download.file(paste0(url, file), paste0("~/", file))
 # }
-filenames <- list.files(path = here::here("data-raw/"))
+localpath = "G:/data-raw/" # could be here::here("data-raw/")
+filenames <- list.files(path = localpath)
 # grep the ones we want
 filenames <- filenames[grepl("(v-tmpccy|v-pcpncy)", filenames)]
 feddat <- list()
 for (i in seq_along(filenames)){
-  tempdf <- read_table(paste0(here::here("data-raw/"), filenames[i]),
+  tempdf <- read_table(paste0(localpath, filenames[i]),
                             col_names = c("st_co_year", month.abb),
                             col_type = paste0(c("c",rep("d",12)), collapse = ""))
   tempdf <- separate(tempdf, st_co_year, into = c("state","cofips","element","year"),
