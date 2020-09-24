@@ -60,7 +60,7 @@ conus_weather <- conus_weather %>%
     fips = case_when(fips %in% c("46102","46113") ~ "46102/46113",
                      fips %in% c("51019","51515") ~ "51019/51515",
                      fips == "24511" ~ "11001",
-                     TRUE ~ fips),
+                     TRUE ~ fips)
   ) %>%
   filter(state_fips != "02") %>% # remove alaska, hawaii and PR already gone
   select(name, fips, state_fips, cofips, state_noaa = state,
@@ -77,7 +77,10 @@ myfipslookup <- fips.lookup %>%
 
 conus_weather <- conus_weather %>% 
   left_join(monthdata, by = "month") %>% 
-  left_join(myfipslookup, by = "fips")
+  left_join(myfipslookup, by = "fips") %>% 
+  mutate(location = case_when(fips == "51019/51515" ~ "Virginia-Bedford",
+                              fips == "46102/46113" ~ "South Dakota-Oglala Lakota",
+                              TRUE ~ location))
 
 # Virginia has "independent cities" some of which NOAA lists separately
 # and some it doesn't ... Lexington City is inside Rockbridge county.
@@ -86,7 +89,8 @@ fakeLexingtonCity <- conus_weather %>%
   mutate(fips = "51678",
          state_fips = "51",
          cofips = "678",
-         state_noaa = NA_character_)
+         state_noaa = NA_character_,
+         location = "Virginia-Lexington City")
 conus_weather <- bind_rows(conus_weather, fakeLexingtonCity)
 usethis::use_data(conus_weather, overwrite = TRUE)
 
