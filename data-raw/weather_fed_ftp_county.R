@@ -37,6 +37,7 @@ conus_weather <- bind_rows(feddat, .id = "var")
 #dplyr::filter(conus_weather, state =="25", year == "1995", cofips == "001")
 
 
+
 conus_weather <- pivot_longer(conus_weather, 6:17, names_to = "month") %>%
   pivot_wider(id_cols = c("state","cofips","year","month"), names_from = "var", values_from = "value")
 
@@ -48,6 +49,7 @@ state_code_translations <- read_csv("data-raw/USA_state_abb.csv") %>%
   select(name, state_noaa, state_fips)
 # process missing values and fix doubled counties
 conus_weather <- conus_weather %>%
+  dplyr::filter(year > 1995) %>% # trim to most recent 30 years
   left_join(state_code_translations, by = c("state" = "state_noaa")) %>%
   mutate(
     fips = paste0(state_fips, cofips),
@@ -63,6 +65,19 @@ conus_weather <- conus_weather %>%
   filter(state_fips != "02") %>% # remove alaska, hawaii and PR already gone
   select(name, fips, state_fips, cofips, state_noaa = state,
          year, month, mean_temp, precip)
+
+ 
+
+# flmtools::lagData expects unit to be integers, and matches on a variable called Location
+monthdata <- tibble(month = month.abb,
+                    month.num = 1:12)
+myfipslookup <- fips.lookup %>% 
+  mutate(fips = sprintf("%05d", as.numeric(fips))) %>% 
+  select(fips, location)
+
+conus_weather <- conus_weather %>% 
+  left_join(monthdata, by = "month") %>% 
+  left_join(myfipslookup, by = "fips")
 
 # Virginia has "independent cities" some of which NOAA lists separately
 # and some it doesn't ... Lexington City is inside Rockbridge county.
