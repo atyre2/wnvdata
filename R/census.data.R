@@ -19,4 +19,4 @@
 #' @docType data
 #'
 #' @source US Census Bureau Population Estimation Program
-"county_popn"
+"census.data"

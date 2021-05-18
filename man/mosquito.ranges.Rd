@@ -4,7 +4,9 @@
 \name{mosquito.ranges}
 \alias{mosquito.ranges}
 \title{Mosquito Ranges}
-\format{An object of class \code{data.frame} with 3108 rows and 9 columns.}
+\format{
+An object of class \code{data.frame} with 3108 rows and 9 columns.
+}
 \source{
 Bernard, K. and Kramer L. 2001 West Nile virus activity in the United States, 2001. Viral Immunology 14: 319-338.
 Darsie, R.F., Jr., and R.A. Ward. 1981. Identification and geographical distribution of the mosquitoes of North America,

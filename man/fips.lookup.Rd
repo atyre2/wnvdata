@@ -4,7 +4,9 @@
 \name{fips.lookup}
 \alias{fips.lookup}
 \title{FIPS Lookup Table}
-\format{An object of class \code{data.frame} with 3108 rows and 4 columns.}
+\format{
+An object of class \code{data.frame} with 3108 rows and 4 columns.
+}
 \source{
 \url{https://www.census.gov/geographies/reference-files/2017/demo/popest/2017-fips.html}
 }

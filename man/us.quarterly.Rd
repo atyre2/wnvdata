@@ -4,7 +4,9 @@
 \name{us.quarterly}
 \alias{us.quarterly}
 \title{US Quarterly GRIDMET data}
-\format{An object of class \code{data.frame} with 68376 rows and 39 columns.}
+\format{
+An object of class \code{data.frame} with 68376 rows and 51 columns.
+}
 \source{
 \url{https://developers.google.com/earth-engine/datasets/catalog/IDAHO_EPSCOR_GRIDMET}
 }

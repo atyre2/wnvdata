@@ -4,7 +4,9 @@
 \name{nldas.centroid.lookup}
 \alias{nldas.centroid.lookup}
 \title{NLDAS County Centroid Lookup}
-\format{An object of class \code{data.frame} with 3108 rows and 7 columns.}
+\format{
+An object of class \code{data.frame} with 3108 rows and 7 columns.
+}
 \source{
 tl_2017_us_county_LOWER_48.shp, NLDAS Soil moisture data
 }

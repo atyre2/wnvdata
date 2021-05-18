@@ -4,12 +4,15 @@
 \name{ac.data}
 \alias{ac.data}
 \title{Air Conditioning data from EIA survey}
+\format{
+An object of class \code{function} of length 1.
+}
 \source{
 \url{https://www.eia.gov/consumption/residential/data/2015/}, 
 \url{https://www.arcgis.com/home/item.html?id=8e5c3c6e1fa94e379553e199dcc4e777#overview}
 }
 \usage{
-ac.data()
+ac.data
 }
 \description{
 Air conditioning data were taken from the Residential Energy Consumption Survey (RECS) from the U.S. Energy Information Administration
@@ -25,3 +28,4 @@ https://www.arcgis.com/home/item.html?id=8e5c3c6e1fa94e379553e199dcc4e777#overvi
 Details on the climate zone methods are here: https://www.energy.gov/sites/prod/files/2015/10/f27/ba_climate_region_guide_7.3.pdf
 Climate Zones also appear to be available here: https://www.eia.gov/maps/layer_info-m.php
 }
+\keyword{datasets}
